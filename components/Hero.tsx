@@ -1,6 +1,18 @@
+import { Fragment } from 'react'
 import { AIGirl } from './AIGirl'
+import { Uptime } from './Uptime'
 
-export function Hero({ posts, words }: { posts: number; words: number }) {
+export function Hero({
+  posts,
+  words,
+  tags,
+  moreTags,
+}: {
+  posts: number
+  words: number
+  tags: string[]
+  moreTags?: boolean
+}) {
   return (
     <section className="hero">
       <div className="term-titlebar">
@@ -27,12 +39,20 @@ export function Hero({ posts, words }: { posts: number; words: number }) {
           <dt>OS</dt>          <dd>Web 1.0 <span className="dim">(Markdown ❤ Pink)</span></dd>
           <dt>Host</dt>        <dd>Next.js + Nextra <span className="num">4.6</span></dd>
           <dt>Kernel</dt>      <dd><span className="num">15.5</span>-app-router</dd>
-          <dt>Uptime</dt>      <dd><span className="num">1</span> day, <span className="num">3:14</span></dd>
+          <dt>Uptime</dt>      <dd><Uptime /></dd>
           <dt>Posts</dt>       <dd><span className="num">{posts}</span> entries · <span className="num">{words.toLocaleString()}</span> words</dd>
-          <dt>Tags</dt>        <dd><span className="tag">#web</span> <span className="tag">#blog</span> <span className="tag">#meta</span> <span className="dim">+ more</span></dd>
-          <dt>Shell</dt>       <dd>nvim · tmux · <span className="dim">wezterm</span></dd>
+          <dt>Tags</dt>
+          <dd>
+            {tags.map((t, i) => (
+              <Fragment key={t}>
+                {i > 0 && ' '}
+                <span className="tag">#{t}</span>
+              </Fragment>
+            ))}
+            {moreTags && <> <span className="dim">+ more</span></>}
+          </dd>
+          <dt>Terminal</dt>    <dd>Ghostty</dd>
           <dt>Mood</dt>        <dd><span className="num">◔ ◡ ◔</span> <span className="dim">/* feeling cute */</span></dd>
-          <dt>Now playing</dt> <dd>♪ <span className="dim">YOASOBI — アイドル</span></dd>
           <dt>Theme</dt>
           <dd>
             pink-on-black

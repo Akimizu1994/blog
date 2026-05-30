@@ -1,16 +1,18 @@
 import Link from 'next/link'
 import { Hero } from '@/components/Hero'
 import { PostRow } from '@/components/PostRow'
-import { getPosts, groupByYear } from '@/lib/posts'
+import { getPosts, groupByYear, aggregateTags } from '@/lib/posts'
 
 export default async function Home() {
   const posts = await getPosts()
   const grouped = groupByYear(posts)
   const totalWords = posts.length * 1600 // rough estimate for the neofetch line
+  const allTags = aggregateTags(posts)
+  const topTags = allTags.slice(0, 3).map(t => t.tag)
 
   return (
     <main>
-      <Hero posts={posts.length} words={totalWords} />
+      <Hero posts={posts.length} words={totalWords} tags={topTags} moreTags={allTags.length > 3} />
 
       <div className="section-h">
         <h2><span className="ch">$</span> cat recent_posts.md</h2>

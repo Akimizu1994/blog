@@ -1,7 +1,7 @@
 import { PostRow } from '@/components/PostRow'
 import { getPosts, groupByYear } from '@/lib/posts'
 
-export const metadata = { title: 'Posts — anon@nextra' }
+export const metadata = { title: 'Posts — Akimizu@nextra' }
 
 export default async function PostsIndex() {
   const posts = await getPosts()

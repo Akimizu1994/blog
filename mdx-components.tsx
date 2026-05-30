@@ -70,13 +70,14 @@ function PostWrapper({
 
           <footer className="post-end">
             <div className="post-end-meta">
-              <span>last edited {date} · <a href="#">edit on GitHub ↗</a></span>
-              <span><a href="#">share ↗</a> · <a href="#">copy link</a></span>
+              <span>last edited {date}</span>
             </div>
+            {/* comments (GitHub Discussions) — hidden until giscus is wired up
             <div className="comments">
               <h4>comments</h4>
               <p>讨论托管在 <a href="#">GitHub Discussions</a>，需要 GitHub 账号登录。</p>
             </div>
+            */}
           </footer>
         </article>
 

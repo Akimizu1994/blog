@@ -2,7 +2,13 @@ import { getPosts } from '@/lib/posts'
 
 export const dynamic = 'force-static'
 
-const SITE_URL = 'http://192.168.50.57/blog'
+// Absolute base URL baked into the RSS feed at build time.
+//   prod (Cloudflare) → custom domain, root path
+//   test (NUC)        → LAN IP, /blog subpath
+const SITE_URL =
+  process.env.DEPLOY_ENV === 'test'
+    ? 'http://192.168.50.57/blog'
+    : 'https://blog.akimizu.moe'
 const SITE_TITLE = "Akimizu's Blog"
 const SITE_DESC = 'TUI-flavored blog built with Next.js + Nextra + MDX + Tailwind'
 
