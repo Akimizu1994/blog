@@ -1,0 +1,11 @@
+{
+  // Cloudflare Workers static-assets config.
+  // `pnpm build:prod` exports the site to ./out, then `wrangler deploy`
+  // uploads it. No server-side Worker code — assets-only.
+  "name": "blog",
+  "compatibility_date": "2025-05-30",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
