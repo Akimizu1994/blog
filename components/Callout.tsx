@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, ReactElement } from 'react'
 
 type Variant = 'note' | 'tip' | 'important' | 'warning' | 'caution' | 'warn' | 'info'
 
@@ -51,7 +51,7 @@ function IconCaution() {
   )
 }
 
-const META: Record<Variant, { icon: () => JSX.Element; label: string }> = {
+const META: Record<Variant, { icon: () => ReactElement; label: string }> = {
   note:      { icon: IconNote,      label: 'Note' },
   tip:       { icon: IconTip,       label: 'Tip' },
   important: { icon: IconImportant, label: 'Important' },

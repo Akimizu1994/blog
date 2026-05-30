@@ -117,9 +117,10 @@ const ALERT_TYPE_MAP: Record<string, 'note' | 'tip' | 'important' | 'warning' | 
  *   > content
  */
 function GitHubAlert({ children }: { children?: ReactNode }) {
-  const kids = (Array.isArray(children) ? children : [children]) as ReactElement<{ children?: ReactNode }>[]
+  const kids: ReactNode[] = Array.isArray(children) ? children : [children]
   for (let i = 0; i < kids.length; i++) {
-    const text = kids[i]?.props?.children
+    const kid = kids[i] as ReactElement<{ children?: ReactNode }> | undefined
+    const text = kid?.props?.children
     if (typeof text !== 'string') continue
     const m = text.match(ALERT_RE)
     if (!m) continue

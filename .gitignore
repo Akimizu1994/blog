@@ -9,6 +9,10 @@ out
 .claude
 **/.DS_Store
 
+# pnpm regenerates this locally with a non-portable build-approval stub;
+# the site is a single package (no workspace), so it must not be committed.
+pnpm-workspace.yaml
+
 # logs
 *.log
 
