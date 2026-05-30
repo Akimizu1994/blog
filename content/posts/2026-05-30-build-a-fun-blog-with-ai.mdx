@@ -1,0 +1,52 @@
+---
+title: AI 时代，如何快速搭建一个好玩的博客
+description: 用 Claude Design 画稿、Claude Code 复刻、Nextra 驱动，快速搭起这个 TUI 风格博客的全过程。
+date: 2026-05-30
+tags: [ai, blog, web]
+pinned: true
+---
+
+import { Figure } from '@/components/Figure'
+
+我曾经搭建过两次博客网站，但最终都荒废了。
+
+最近在学习AI技术，沉迷Vibe coding，突然想看看能不能用 AI 快速搭建一个好玩的博客。
+
+## 技术选型
+
+静态博客的轮子太多了，Hexo、Hugo、Astro、VuePress 挑花眼。
+
+我想要一个能够高度定制的骨架，做一些有趣的设计，有足够的自由度，但又不想从零造轮子。
+
+最后我选择了 **Next.js + Nextra + MDX** 这套组合
+
+## 设计与开发
+
+样式和设计是我的弱项，让我从零调出一个好看的页面有点困难。但现在是AI时代，这部分我直接交给了 Claude Design。
+
+我把想要的感觉描述给它：TUI风格的信息展示、简洁易读的文章列表、粉毛AI娘、JetBrains Mono 字体。说完它就开始干活了：
+
+<Figure src="/images/posts/image-260530-claude-design-working.png" caption="Claude Design 根据需求生成设计稿" />
+
+初稿方向已经对了，再针对细节让它微调。
+
+期间有个有趣的小插曲，Claude Design有个Tweaks功能，可以让它在原有设计的基础上微调。比如Claude Design给了我light、dark、cet三套主题。
+我觉得这个功能很有趣，就问Claude Design：你可以把Tweaks这个功能做进网站里吗？
+
+于是Claude真的把这个功能做了出来，成了设置面板里一个可以切换主题的选项：
+<Figure src="/images/posts/image-260530-claude-tweaks.png" caption="Claude Design 把 Tweaks 功能做成了设置面板里的一个选项" />
+<Figure src="/images/posts/image-260530-setting.png" caption="切换主题的设置" />
+
+几轮下来，得到了这么一版原型：
+
+<Figure src="/images/posts/image-260530-prototype.png" caption="微调后的原型" />
+
+这版我挺满意：neofetch 风格的首页、伪终端窗口、点缀的 BASH 命令，还有一只粉毛 AI 娘，整体就是那种“技术宅自留地”的调子。
+
+接下来是实现环节，非常简单——直接把 Claude Design 链接丢给 Claude Code，让它照着 1:1 复刻。它把原型里的页面、配色、组件一个个搬成了真正的 Next.js + Nextra 工程，博客骨架就这么搭建起来了。剩下的无非是往里填文章、再抠一些边角细节。
+
+## 部署
+
+源码放在 GitHub，部署用 Cloudflare。
+
+做法不复杂：项目配好静态导出，把仓库连到 Cloudflare Pages，设好构建命令和输出目录。之后每次往 main 一推，Cloudflare 自动拉代码、构建、发布，几十秒就能上线。免费、够快，对一个随缘更新的个人博客来说足够了。
